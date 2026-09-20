@@ -1,0 +1,316 @@
+/* ============================================
+   GENERAL STYLES AND LAYOUT
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+/* ============================================
+   SCORE BOARD STYLES
+   ============================================ */
+
+.score-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.score-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.score-label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.score-value {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* ============================================
+   TURN DISPLAY STYLES
+   ============================================ */
+
+.turn-display {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+#turnMessage {
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#currentPlayer {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* ============================================
+   GAME BOARD STYLES
+   ============================================ */
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+}
+
+/* Cell Styles */
+.cell {
+    background: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for empty cells */
+.cell:hover:not(.occupied) {
+    background: #f0f0f0;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Active click effect */
+.cell:active:not(.occupied) {
+    transform: scale(0.95);
+}
+
+/* Style for cells with X (Player 1) */
+.cell.x {
+    color: #667eea;
+    font-weight: 900;
+}
+
+/* Style for cells with O (Player 2) */
+.cell.o {
+    color: #764ba2;
+    font-weight: 900;
+}
+
+/* Occupied cells should not be interactive */
+.cell.occupied {
+    cursor: not-allowed;
+}
+
+/* Winning cells highlight */
+.cell.winner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* ============================================
+   GAME STATUS MESSAGE STYLES
+   ============================================ */
+
+.game-status {
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#statusMessage {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+}
+
+#statusMessage.winner-x {
+    color: #667eea;
+}
+
+#statusMessage.winner-o {
+    color: #764ba2;
+}
+
+#statusMessage.draw {
+    color: #ff9800;
+}
+
+/* ============================================
+   NEW GAME BUTTON STYLES
+   ============================================ */
+
+.new-game-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.new-game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.new-game-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN (MOBILE)
+   ============================================ */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 0.9em;
+    }
+
+    .score-board {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .score-item {
+        padding: 12px;
+    }
+
+    .score-value {
+        font-size: 1.8em;
+    }
+
+    .game-board {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .cell {
+        font-size: 2em;
+    }
+
+    #turnMessage {
+        font-size: 1.1em;
+    }
+
+    .new-game-btn {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+
+    .score-item {
+        padding: 10px;
+    }
+
+    .score-label {
+        font-size: 0.8em;
+    }
+
+    .score-value {
+        font-size: 1.5em;
+    }
+
+    .cell {
+        font-size: 1.8em;
+    }
+
+    .game-board {
+        gap: 6px;
+        padding: 6px;
+    }
+}
